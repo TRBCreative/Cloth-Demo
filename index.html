@@ -3,1997 +3,862 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kopi Dewata — Bali's Finest Cafe Experience</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <title>MAISON NOIR | Luxury Fashion House</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Montserrat:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #2C1810;
-            --secondary: #D4A574;
-            --accent: #8B6914;
-            --cream: #FFF8F0;
-            --sage: #7A8B6F;
-            --coral: #E8A87C;
-            --dark: #1A0F0A;
-            --gold: #C9A96E;
-            --terracotta: #C4704A;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--cream);
-            color: var(--primary);
-            overflow-x: hidden;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--cream); }
-        ::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--terracotta); }
-
-        /* Preloader */
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-
-        .preloader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .preloader-content {
-            text-align: center;
-        }
-
-        .preloader-content .coffee-cup {
-            font-size: 60px;
-            animation: steam 1.5s ease-in-out infinite;
-        }
-
-        @keyframes steam {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .preloader-text {
-            color: var(--secondary);
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-top: 20px;
-            letter-spacing: 5px;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.5s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(26, 15, 10, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 15px 60px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--cream);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo span {
-            color: var(--secondary);
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 400;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            position: relative;
-            transition: color 0.3s;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--secondary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary);
-        }
-
-        .reserve-btn {
-            background: transparent;
-            border: 1px solid var(--secondary);
-            color: var(--secondary) !important;
-            padding: 10px 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-        }
-
-        .reserve-btn:hover {
-            background: var(--secondary);
-            color: var(--dark) !important;
-        }
-
-        .reserve-btn::after {
-            display: none !important;
-        }
-
-        /* Mobile Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .hamburger span {
-            width: 30px;
-            height: 2px;
-            background: var(--cream);
-            transition: all 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(135deg, rgba(26, 15, 10, 0.7) 0%, rgba(44, 24, 16, 0.5) 50%, rgba(26, 15, 10, 0.7) 100%),
-                url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1920&q=80') center/cover no-repeat;
-            transform: scale(1.1);
-            animation: heroZoom 20s ease-in-out infinite alternate;
-        }
-
-        @keyframes heroZoom {
-            0% { transform: scale(1.1); }
-            100% { transform: scale(1.0); }
-        }
-
-        .hero-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(212, 165, 116, 0.3);
-            border-radius: 50%;
-            animation: float-particle linear infinite;
-        }
-
-        @keyframes float-particle {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
-        }
-
-        .hero-content {
-            position: relative;
-            text-align: center;
-            z-index: 2;
-            max-width: 900px;
-            padding: 0 30px;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            border: 1px solid var(--secondary);
-            color: var(--secondary);
-            padding: 8px 30px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            animation: fadeInUp 1s ease 0.3s both;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            font-weight: 700;
-            color: var(--cream);
-            line-height: 1.1;
-            margin-bottom: 10px;
-            animation: fadeInUp 1s ease 0.5s both;
-        }
-
-        .hero h1 em {
-            font-style: italic;
-            color: var(--secondary);
-            font-weight: 400;
-        }
-
-        .hero-subtitle {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
-            color: var(--coral);
-            margin-bottom: 25px;
-            animation: fadeInUp 1s ease 0.7s both;
-        }
-
-        .hero p {
-            color: rgba(255, 248, 240, 0.8);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            max-width: 600px;
-            margin: 0 auto 40px;
-            font-weight: 300;
-            animation: fadeInUp 1s ease 0.9s both;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            animation: fadeInUp 1s ease 1.1s both;
-        }
-
-        .btn-primary {
-            background: var(--secondary);
-            color: var(--dark);
-            border: none;
-            padding: 16px 40px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.4s;
-            text-decoration: none;
-        }
-
-        .btn-primary:hover {
-            background: var(--cream);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(212, 165, 116, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--cream);
-            border: 1px solid rgba(255,248,240,0.4);
-            padding: 16px 40px;
-            font-size: 0.9rem;
-            font-weight: 400;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.4s;
-            text-decoration: none;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--secondary);
-            color: var(--secondary);
-            transform: translateY(-3px);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            animation: fadeInUp 1s ease 1.5s both;
-        }
-
-        .scroll-indicator span {
-            color: rgba(255,248,240,0.5);
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--secondary), transparent);
-            animation: scrollLine 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollLine {
-            0%, 100% { opacity: 0; transform: scaleY(0); transform-origin: top; }
-            50% { opacity: 1; transform: scaleY(1); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Section Styling */
-        section {
-            padding: 120px 60px;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .section-tag {
-            font-size: 0.8rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--terracotta);
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .section-title em {
-            font-style: italic;
-            color: var(--terracotta);
-            font-weight: 400;
-        }
-
-        .section-line {
-            width: 60px;
-            height: 2px;
-            background: var(--secondary);
-            margin: 20px auto;
-        }
-
-        .section-desc {
-            max-width: 600px;
-            margin: 0 auto;
-            color: #7A6B5D;
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        /* About Section */
-        .about {
-            background: var(--cream);
-            position: relative;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .about-images {
-            position: relative;
-            height: 600px;
-        }
-
-        .about-img {
-            position: absolute;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover {
-            transform: scale(1.03);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .about-img-1 {
-            width: 320px;
-            height: 400px;
-            top: 0;
-            left: 0;
-            z-index: 2;
-        }
-
-        .about-img-2 {
-            width: 280px;
-            height: 350px;
-            bottom: 0;
-            right: 0;
-            z-index: 1;
-        }
-
-        .about-float-card {
-            position: absolute;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--dark);
-            color: var(--cream);
-            padding: 25px 35px;
-            border-radius: 15px;
-            z-index: 3;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-        }
-
-        .about-float-card .number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--secondary);
-        }
-
-        .about-float-card .label {
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.7;
-        }
-
-        .about-content h3 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
-            color: var(--terracotta);
-            margin-bottom: 10px;
-        }
-
-        .about-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 25px;
-            line-height: 1.2;
-        }
-
-        .about-content h2 em {
-            font-style: italic;
-            color: var(--terracotta);
-            font-weight: 400;
-        }
-
-        .about-content p {
-            color: #7A6B5D;
-            line-height: 1.9;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .about-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-top: 35px;
-        }
-
-        .about-feature {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .about-feature-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(212, 165, 116, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        .about-feature span {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--primary);
-        }
-
-        /* Marquee Section */
-        .marquee-section {
-            background: var(--dark);
-            padding: 30px 0;
-            overflow: hidden;
-        }
-
-        .marquee-track {
-            display: flex;
-            animation: marquee 25s linear infinite;
-            width: max-content;
-        }
-
-        .marquee-item {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            padding: 0 30px;
-            white-space: nowrap;
-        }
-
-        .marquee-item span {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--cream);
-            font-weight: 300;
-        }
-
-        .marquee-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--secondary);
-            border-radius: 50%;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Menu Section */
-        .menu {
-            background: linear-gradient(180deg, #F5EDE3 0%, var(--cream) 100%);
-        }
-
-        .menu-categories {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 60px;
-            flex-wrap: wrap;
-        }
-
-        .menu-cat-btn {
-            padding: 12px 30px;
-            border: 1px solid var(--secondary);
-            background: transparent;
-            color: var(--primary);
-            border-radius: 30px;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-        }
-
-        .menu-cat-btn.active, .menu-cat-btn:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: var(--cream);
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .menu-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.5s ease;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-            position: relative;
-        }
-
-        .menu-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.12);
-        }
-
-        .menu-card-img {
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .menu-card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .menu-card:hover .menu-card-img img {
-            transform: scale(1.1);
-        }
-
-        .menu-card-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--terracotta);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-
-        .menu-card-body {
-            padding: 30px;
-        }
-
-        .menu-card-body h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            margin-bottom: 8px;
-        }
-
-        .menu-card-body .origin {
-            color: var(--sage);
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-
-        .menu-card-body p {
-            color: #9A8B7A;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .menu-card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .menu-price {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--terracotta);
-        }
-
-        .menu-price small {
-            font-size: 0.8rem;
-            color: #aaa;
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-        }
-
-        .menu-add-btn {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            border: 1px solid var(--secondary);
-            background: transparent;
-            color: var(--primary);
-            font-size: 1.3rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .menu-add-btn:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: var(--cream);
-        }
-
-        /* Signature Drinks Horizontal Scroll */
-        .signature {
-            background: var(--dark);
-            padding: 120px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .signature .section-title { color: var(--cream); }
-        .signature .section-desc { color: rgba(255,248,240,0.6); }
-
-        .signature-scroll {
-            display: flex;
-            gap: 40px;
-            padding: 0 60px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-        }
-
-        .signature-scroll::-webkit-scrollbar { display: none; }
-
-        .signature-card {
-            min-width: 350px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 25px;
-            padding: 40px;
-            scroll-snap-align: start;
-            transition: all 0.4s;
-            backdrop-filter: blur(10px);
-        }
-
-        .signature-card:hover {
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-5px);
-        }
-
-        .signature-card .emoji {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .signature-card h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--cream);
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .signature-card .price-tag {
-            color: var(--secondary);
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
-
-        .signature-card p {
-            color: rgba(255,248,240,0.5);
-            font-size: 0.9rem;
-            line-height: 1.7;
-            font-weight: 300;
-        }
-
-        /* Gallery */
-        .gallery {
-            padding: 120px 0;
-            background: var(--cream);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, 200px);
-            gap: 15px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 60px;
-        }
-
-        .gallery-item {
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-item::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(26,15,10,0.6), transparent);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .gallery-item:hover::after {
-            opacity: 1;
-        }
-
-        .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-        .gallery-item:nth-child(4) { grid-row: span 2; }
-
-        /* Testimonials */
-        .testimonials {
-            background: linear-gradient(135deg, #F5EDE3 0%, #EDE1D4 100%);
-            position: relative;
-        }
-
-        .testimonials::before {
-            content: '"';
-            position: absolute;
-            top: 60px;
-            left: 60px;
-            font-family: 'Playfair Display', serif;
-            font-size: 15rem;
-            color: rgba(196, 112, 74, 0.07);
-            line-height: 1;
-        }
-
-        .testimonial-slider {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            min-height: 300px;
-        }
-
-        .testimonial-slide {
-            text-align: center;
-            display: none;
-            animation: fadeIn 0.6s ease;
-        }
-
-        .testimonial-slide.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .testimonial-stars {
-            color: var(--gold);
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-            letter-spacing: 5px;
-        }
-
-        .testimonial-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            line-height: 1.8;
-            color: var(--primary);
-            font-style: italic;
-            margin-bottom: 30px;
-            font-weight: 400;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .testimonial-avatar {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--secondary);
-        }
-
-        .testimonial-info h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-        }
-
-        .testimonial-info span {
-            color: #9A8B7A;
-            font-size: 0.85rem;
-        }
-
-        .testimonial-nav {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 40px;
-        }
-
-        .testimonial-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            border: 1px solid var(--secondary);
-            background: transparent;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .testimonial-dot.active {
-            background: var(--terracotta);
-            border-color: var(--terracotta);
-        }
-
-        /* Experience Stats */
-        .stats {
-            background: var(--dark);
-            padding: 80px 60px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .stat-item {
-            position: relative;
-        }
-
-        .stat-item::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1px;
-            height: 60px;
-            background: rgba(255,255,255,0.1);
-        }
-
-        .stat-item:last-child::after {
-            display: none;
-        }
-
-        .stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            color: rgba(255,248,240,0.5);
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* Visit / Location */
-        .visit {
-            background: var(--cream);
-            position: relative;
-        }
-
-        .visit-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .visit-map {
-            border-radius: 25px;
-            overflow: hidden;
-            height: 500px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-
-        .visit-map iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .visit-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .visit-info h3 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
-            color: var(--terracotta);
-            margin-bottom: 10px;
-        }
-
-        .visit-info h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 30px;
-            line-height: 1.2;
-        }
-
-        .visit-details {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .visit-detail {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-
-        .visit-detail-icon {
-            width: 55px;
-            height: 55px;
-            background: rgba(212, 165, 116, 0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            flex-shrink: 0;
-        }
-
-        .visit-detail h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .visit-detail p {
-            color: #7A6B5D;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            font-weight: 300;
-        }
-
-        /* Newsletter */
-        .newsletter {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
-            padding: 100px 60px;
-            text-align: center;
-        }
-
-        .newsletter h2 {
-            font-family: 'Playfair Display', serif;
-            color: var(--cream);
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .newsletter p {
-            color: rgba(255,248,240,0.6);
-            margin-bottom: 35px;
-            font-weight: 300;
-        }
-
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-            gap: 10px;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 16px 25px;
-            border: 1px solid rgba(255,255,255,0.15);
-            background: rgba(255,255,255,0.05);
-            border-radius: 50px;
-            color: var(--cream);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .newsletter-form input::placeholder {
-            color: rgba(255,248,240,0.4);
-        }
-
-        .newsletter-form input:focus {
-            border-color: var(--secondary);
-        }
-
-        .newsletter-form button {
-            padding: 16px 35px;
-            background: var(--secondary);
-            color: var(--dark);
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 1px;
-        }
-
-        .newsletter-form button:hover {
-            background: var(--cream);
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        footer {
-            background: #0D0705;
-            padding: 80px 60px 30px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-bottom: 60px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-
-        .footer-brand .logo {
-            margin-bottom: 20px;
-            display: inline-flex;
-        }
-
-        .footer-brand p {
-            color: rgba(255,248,240,0.4);
-            line-height: 1.8;
-            font-size: 0.9rem;
-            font-weight: 300;
-            margin-bottom: 25px;
-        }
-
-        .footer-socials {
-            display: flex;
-            gap: 12px;
-        }
-
-        .footer-social {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .footer-social:hover {
-            background: var(--secondary);
-            border-color: var(--secondary);
-            color: var(--dark);
-        }
-
-        .footer-col h4 {
-            font-family: 'Playfair Display', serif;
-            color: var(--cream);
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-        }
-
-        .footer-col a {
-            display: block;
-            color: rgba(255,248,240,0.4);
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 12px;
-            transition: color 0.3s;
-            font-weight: 300;
-        }
-
-        .footer-col a:hover {
-            color: var(--secondary);
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 30px auto 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: rgba(255,248,240,0.25);
-            font-size: 0.8rem;
-        }
-
-        /* Scroll Reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            section { padding: 80px 40px; }
-            .hero h1 { font-size: 3.5rem; }
-            .section-title { font-size: 2.8rem; }
-            .menu-grid { grid-template-columns: repeat(2, 1fr); }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
-            .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
-            .gallery-item:nth-child(4) { grid-row: span 1; }
-            .about-grid { gap: 40px; }
-        }
-
-        @media (max-width: 768px) {
-            nav { padding: 15px 25px; }
-            nav.scrolled { padding: 12px 25px; }
-            
-            .hamburger { display: flex; }
-            
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                height: 100vh;
-                background: var(--dark);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                transition: right 0.4s ease;
-                gap: 30px;
-            }
-
-            .nav-links.open { right: 0; }
-
-            section { padding: 70px 25px; }
-            .hero h1 { font-size: 2.5rem; }
-            .hero-subtitle { font-size: 1.4rem; }
-            .hero p { font-size: 0.95rem; }
-            .hero-buttons { flex-direction: column; align-items: center; }
-            .section-title { font-size: 2.2rem; }
-            .about-grid { grid-template-columns: 1fr; }
-            .about-images { height: 400px; }
-            .about-img-1 { width: 250px; height: 320px; }
-            .about-img-2 { width: 220px; height: 280px; }
-            .menu-grid { grid-template-columns: 1fr; max-width: 450px; }
-            .gallery-grid { grid-template-columns: 1fr; padding: 0 25px; }
-            .gallery-item:nth-child(1) { grid-column: span 1; }
-            .gallery-item { height: 250px; }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
-            .stat-item::after { display: none; }
-            .visit-grid { grid-template-columns: 1fr; }
-            .visit-map { height: 300px; }
-            .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-            .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
-            .newsletter-form { flex-direction: column; }
-            .testimonial-text { font-size: 1.2rem; }
-            .about-content h2 { font-size: 2.2rem; }
-            .visit-info h2 { font-size: 2.2rem; }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 2rem; }
-            .section-title { font-size: 1.8rem; }
-            .about-images { height: 350px; }
-            .about-img-1 { width: 200px; height: 260px; }
-            .about-img-2 { width: 180px; height: 240px; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: 1fr; }
-        }
-
-        /* Floating Bali Leaf Decorations */
-        .leaf-decoration {
-            position: absolute;
-            opacity: 0.05;
-            font-size: 8rem;
-            z-index: 0;
-            pointer-events: none;
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --noir:#0a0a0a;--noir2:#111;--noir3:#181818;--noir4:#1f1f1f;--noir5:#282828;
+            --ivory:#f5f0e8;--ivory2:#ede5d8;--cream:#faf7f2;--pearl:#e8e0d0;
+            --gold:#c9a96e;--gold-l:#dfc08a;--gold-d:#a68a4e;
+            --rose:#c4727f;--rose-l:#d4949e;--blush:#e8c4c4;
+            --sage:#8a9a7b;--sage-l:#a8b89c;
+            --taupe:#8b7d6b;--taupe-l:#a99b8a;
+            --charcoal:#3a3a3a;--silver:#c0c0c0;
+            --white:#fff;--black:#000;
+            --font-display:'Playfair Display',serif;
+            --font-body:'Montserrat',sans-serif;
+            --font-accent:'Cormorant Garamond',serif;
+            --ease:cubic-bezier(.25,.46,.45,.94);
+            --ease-out:cubic-bezier(.22,1,.36,1);
+            --ease-spring:cubic-bezier(.175,.885,.32,1.275);
+        }
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font-body);background:var(--cream);color:var(--noir);overflow-x:hidden;line-height:1.7;cursor:default}
+        ::selection{background:var(--noir);color:var(--ivory)}
+        ::-webkit-scrollbar{width:6px}
+        ::-webkit-scrollbar-track{background:var(--cream)}
+        ::-webkit-scrollbar-thumb{background:var(--taupe);border-radius:3px}
+        a{text-decoration:none;color:inherit}ul{list-style:none}
+        .container{max-width:1280px;margin:0 auto;padding:0 28px}
+        section{padding:120px 0;position:relative}
+
+        /* ===== CURSOR ===== */
+        .cur{position:fixed;width:14px;height:14px;border:1.5px solid var(--noir);border-radius:50%;pointer-events:none;z-index:100000;transition:transform .2s var(--ease),width .3s,height .3s,border-color .3s;transform:translate(-50%,-50%);mix-blend-mode:difference}
+        .cur-d{position:fixed;width:4px;height:4px;background:var(--noir);border-radius:50%;pointer-events:none;z-index:100001;transform:translate(-50%,-50%);transition:transform .08s}
+        .cur.hov{width:55px;height:55px;border-color:var(--gold)}
+        .cur.inv{border-color:var(--ivory)}
+        .cur-d.inv{background:var(--ivory)}
+
+        /* ===== PRELOADER ===== */
+        #preloader{position:fixed;inset:0;background:var(--noir);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:all 1s var(--ease-out)}
+        #preloader.done{clip-path:polygon(0 0,100% 0,100% 0,0 0)}
+        .pre-logo{font-family:var(--font-display);font-size:3rem;color:var(--ivory);letter-spacing:15px;margin-bottom:8px;animation:preIn 1s ease .2s both;font-weight:300}
+        .pre-sub{font-family:var(--font-accent);font-size:.9rem;color:var(--taupe-l);letter-spacing:8px;text-transform:uppercase;margin-bottom:50px;animation:preIn 1s ease .4s both}
+        @keyframes preIn{from{opacity:0;transform:translateY(15px);letter-spacing:25px}to{opacity:1;transform:translateY(0)}}
+        .pre-line{width:200px;height:1px;background:var(--noir4);overflow:hidden;position:relative}
+        .pre-fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-d),var(--gold));transition:width .08s}
+        .pre-pct{font-family:var(--font-display);font-size:.7rem;color:var(--gold);margin-top:15px;letter-spacing:5px}
+
+        /* ===== NAV ===== */
+        .topstrip{position:fixed;top:0;width:100%;z-index:1001;padding:8px 0;background:var(--noir);color:var(--taupe-l);font-size:.68rem;letter-spacing:2px;text-align:center}
+        .topstrip span{margin:0 15px}
+        .topstrip a{color:var(--gold);transition:color .3s}
+        .topstrip a:hover{color:var(--gold-l)}
+
+        .navbar{position:fixed;top:30px;width:100%;z-index:1000;padding:18px 0;transition:all .5s var(--ease)}
+        .navbar.scrolled{top:0;padding:12px 0;background:rgba(250,247,242,.96);backdrop-filter:blur(30px);box-shadow:0 4px 30px rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.04)}
+        .navbar .container{display:flex;align-items:center;justify-content:space-between}
+        .logo{display:flex;flex-direction:column;align-items:center;line-height:1}
+        .logo-main{font-family:var(--font-display);font-size:1.6rem;letter-spacing:10px;font-weight:400}
+        .logo-sub{font-family:var(--font-accent);font-size:.5rem;letter-spacing:6px;color:var(--taupe);text-transform:uppercase;margin-top:3px}
+        .nav-menu{display:flex;align-items:center;gap:32px}
+        .nav-menu a{font-size:.7rem;text-transform:uppercase;letter-spacing:2.5px;font-weight:500;color:var(--charcoal);position:relative;transition:color .3s}
+        .nav-menu a::after{content:'';position:absolute;bottom:-5px;left:50%;width:0;height:1px;background:var(--noir);transition:all .3s var(--ease);transform:translateX(-50%)}
+        .nav-menu a:hover{color:var(--noir)}
+        .nav-menu a:hover::after{width:100%}
+        .nav-icons{display:flex;gap:18px;align-items:center}
+        .nav-icon{position:relative;font-size:1.1rem;cursor:pointer;transition:transform .3s}
+        .nav-icon:hover{transform:scale(1.1)}
+        .nav-icon .badge{position:absolute;top:-6px;right:-8px;width:16px;height:16px;background:var(--noir);color:var(--ivory);border-radius:50%;font-size:.55rem;display:flex;align-items:center;justify-content:center;font-weight:700}
+
+        .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001;padding:5px}
+        .hamburger span{width:24px;height:1.5px;background:var(--noir);transition:all .4s var(--ease);display:block}
+        .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+        .hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+        .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+        .mobile-nav{position:fixed;inset:0;background:var(--cream);z-index:998;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:0;visibility:hidden;transition:all .5s var(--ease)}
+        .mobile-nav.active{opacity:1;visibility:visible}
+        .mobile-nav a{font-family:var(--font-display);font-size:2rem;letter-spacing:5px;padding:10px 0;color:var(--noir);transition:all .3s;transform:translateY(20px);opacity:0}
+        .mobile-nav.active a{transform:translateY(0);opacity:1;transition-delay:calc(var(--i)*.06s)}
+        .mobile-nav a:hover{color:var(--gold)}
+
+        /* ===== SECTION HEADERS ===== */
+        .sh{text-align:center;margin-bottom:70px}
+        .sh .over{font-family:var(--font-accent);font-style:italic;color:var(--taupe);font-size:1.1rem;letter-spacing:3px;display:block;margin-bottom:8px}
+        .sh h2{font-family:var(--font-display);font-size:3rem;font-weight:400;letter-spacing:6px;margin-bottom:18px;line-height:1.2}
+        .sh .orn{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:18px}
+        .sh .orn i{width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--taupe));display:block}
+        .sh .orn i:last-child{background:linear-gradient(90deg,var(--taupe),transparent)}
+        .sh .orn em{width:6px;height:6px;background:var(--noir);transform:rotate(45deg);display:block;font-style:normal}
+        .sh p{color:var(--taupe);max-width:520px;margin:0 auto;font-size:.92rem;font-weight:300}
+
+        /* ===== BUTTONS ===== */
+        .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 42px;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:4px;cursor:pointer;transition:all .5s var(--ease);border:none;font-family:var(--font-body);position:relative;overflow:hidden}
+        .btn-dark{background:var(--noir);color:var(--ivory)}
+        .btn-dark::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);transition:left .6s}
+        .btn-dark:hover::before{left:100%}
+        .btn-dark:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(0,0,0,.15)}
+        .btn-light{background:transparent;color:var(--noir);border:1px solid var(--noir)}
+        .btn-light::before{content:'';position:absolute;bottom:0;left:0;width:0;height:100%;background:var(--noir);transition:width .4s var(--ease);z-index:-1}
+        .btn-light:hover{color:var(--ivory);border-color:var(--noir)}
+        .btn-light:hover::before{width:100%}
+        .btn-light:hover{transform:translateY(-2px)}
+        .btn-gold{background:var(--gold);color:var(--noir)}
+        .btn-gold:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 10px 40px rgba(201,169,110,.25)}
+        .btn .arr{transition:transform .3s}.btn:hover .arr{transform:translateX(4px)}
+        .btn-icon{width:44px;height:44px;border:1px solid rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;background:var(--cream);font-size:1rem}
+        .btn-icon:hover{background:var(--noir);color:var(--ivory);border-color:var(--noir)}
+
+        /* ===== HERO ===== */
+        .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:0;background:var(--noir)}
+        .hero-split{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;width:100%}
+        .hero-left{display:flex;align-items:center;padding:0 80px;position:relative;z-index:3}
+        .hero-left-content{max-width:500px}
+        .hero-season{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(245,240,232,.2);padding:8px 22px;font-size:.6rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:30px;animation:hIn 1s var(--ease-out) .3s both}
+        .hero-season .dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:dotPulse 2s ease infinite}
+        @keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+
+        .hero h1{font-family:var(--font-display);font-size:4.5rem;font-weight:300;line-height:1.1;color:var(--ivory);letter-spacing:3px;margin-bottom:12px;animation:hIn 1s var(--ease-out) .5s both}
+        .hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+        .hero-sub{font-family:var(--font-accent);font-size:1.3rem;color:var(--taupe-l);letter-spacing:6px;text-transform:uppercase;margin-bottom:22px;font-weight:300;animation:hIn 1s var(--ease-out) .65s both}
+        .hero-desc{font-size:.92rem;color:var(--taupe-l);line-height:1.9;margin-bottom:40px;font-weight:300;animation:hIn 1s var(--ease-out) .8s both}
+        .hero-btns{display:flex;gap:14px;animation:hIn 1s var(--ease-out) .95s both}
+        .hero-btns .btn-dark{background:var(--ivory);color:var(--noir)}
+        .hero-btns .btn-light{border-color:rgba(245,240,232,.3);color:var(--ivory)}
+        .hero-btns .btn-light::before{background:var(--ivory)}
+        .hero-btns .btn-light:hover{color:var(--noir)}
+        @keyframes hIn{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+
+        .hero-right{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+        .hero-right-bg{position:absolute;inset:0;background:var(--noir3);display:flex;align-items:center;justify-content:center}
+        .hero-model{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:15px;animation:hIn 1.2s var(--ease-out) .7s both}
+        .hero-model-circle{width:380px;height:380px;border:1px solid rgba(201,169,110,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative}
+        .hero-model-circle::before{content:'';position:absolute;inset:-25px;border:1px dashed rgba(201,169,110,.06);border-radius:50%;animation:spinSlow 40s linear infinite}
+        @keyframes spinSlow{to{transform:rotate(360deg)}}
+        .hero-model-inner{width:280px;height:280px;background:radial-gradient(circle,rgba(201,169,110,.04),transparent);border-radius:50%;display:flex;align-items:center;justify-content:center}
+        .hero-model-emoji{font-size:8rem;animation:modelFloat 5s ease-in-out infinite}
+        @keyframes modelFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+        .hero-model-tag{font-family:var(--font-accent);font-size:.8rem;color:var(--taupe-l);letter-spacing:5px;text-transform:uppercase}
+        .hero-right-decor{position:absolute;bottom:0;left:0;width:100%;padding:30px 40px;background:linear-gradient(transparent,rgba(10,10,10,.8));z-index:3;display:flex;justify-content:space-between;align-items:end}
+        .hero-decor-item{text-align:center}
+        .hero-decor-item h4{font-family:var(--font-accent);font-size:.6rem;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:4px}
+        .hero-decor-item p{font-size:.8rem;color:var(--taupe-l);font-weight:300}
+
+        /* Hero floating tags */
+        .hero-float{position:absolute;background:rgba(10,10,10,.7);backdrop-filter:blur(10px);border:1px solid rgba(201,169,110,.1);padding:10px 18px;z-index:4;animation:floatTag 6s ease-in-out infinite}
+        .hero-float span{font-family:var(--font-accent);font-size:.7rem;color:var(--gold);letter-spacing:3px;text-transform:uppercase}
+        .hero-float:nth-child(1){top:20%;right:10%;animation-delay:0s}
+        .hero-float:nth-child(2){bottom:25%;left:5%;animation-delay:2s}
+        @keyframes floatTag{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+        /* ===== MARQUEE ===== */
+        .marquee{overflow:hidden;padding:20px 0;background:var(--noir);border-top:1px solid rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.03)}
+        .mq-track{display:flex;animation:mqScroll 35s linear infinite;width:max-content}
+        .mq-item{display:flex;align-items:center;gap:25px;padding:0 25px;white-space:nowrap;font-family:var(--font-accent);font-size:1rem;color:var(--taupe);letter-spacing:5px;text-transform:uppercase;font-weight:300}
+        .mq-item .dot{width:4px;height:4px;background:var(--gold);transform:rotate(45deg)}
+        @keyframes mqScroll{to{transform:translateX(-50%)}}
+
+        /* ===== NEW ARRIVALS / PRODUCTS ===== */
+        .new-arrivals{background:var(--cream)}
+        .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+        .product-card{position:relative;cursor:pointer;transition:all .5s var(--ease)}
+        .product-card:hover{transform:translateY(-8px)}
+        .product-img{position:relative;aspect-ratio:3/4;background:var(--pearl);overflow:hidden;margin-bottom:18px;display:flex;align-items:center;justify-content:center}
+        .product-img .emoji{font-size:5rem;transition:transform .6s var(--ease)}
+        .product-card:hover .product-img .emoji{transform:scale(1.1)}
+        .product-img-overlay{position:absolute;inset:0;background:rgba(10,10,10,.04);opacity:0;transition:opacity .4s;display:flex;align-items:center;justify-content:center;gap:10px}
+        .product-card:hover .product-img-overlay{opacity:1}
+        .product-tag{position:absolute;top:15px;left:15px;background:var(--noir);color:var(--ivory);padding:5px 14px;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;font-weight:600}
+        .product-tag.sale{background:var(--rose)}
+        .product-tag.new{background:var(--sage)}
+        .product-wishlist{position:absolute;top:15px;right:15px;width:36px;height:36px;background:var(--cream);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;opacity:0;transition:all .3s;cursor:pointer;border:none}
+        .product-card:hover .product-wishlist{opacity:1}
+        .product-wishlist:hover{background:var(--noir);color:var(--ivory);transform:scale(1.1)}
+        .product-colors{display:flex;gap:6px;margin-bottom:10px}
+        .color-dot{width:12px;height:12px;border-radius:50%;border:1.5px solid transparent;cursor:pointer;transition:all .3s}
+        .color-dot:hover{border-color:var(--noir);transform:scale(1.15)}
+        .product-info h4{font-family:var(--font-display);font-size:1rem;letter-spacing:1px;margin-bottom:4px;font-weight:400}
+        .product-info .category{font-family:var(--font-accent);font-size:.78rem;color:var(--taupe);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+        .product-info .price{font-weight:600;font-size:.9rem;letter-spacing:1px}
+        .product-info .price .old{color:var(--taupe);text-decoration:line-through;font-weight:300;margin-right:8px}
+
+        /* ===== CATEGORIES ===== */
+        .categories{background:var(--noir);color:var(--ivory);overflow:hidden}
+        .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+        .cat-card{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer;display:flex;align-items:flex-end;background:var(--noir3)}
+        .cat-card-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:transform .8s var(--ease)}
+        .cat-card:hover .cat-card-bg{transform:scale(1.05)}
+        .cat-card-bg .emoji{font-size:6rem;opacity:.15}
+        .cat-overlay{position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(10,10,10,.85))}
+        .cat-content{position:relative;z-index:2;padding:35px;width:100%}
+        .cat-content .over{font-family:var(--font-accent);font-style:italic;color:var(--gold);font-size:.85rem;letter-spacing:2px;display:block;margin-bottom:5px}
+        .cat-content h3{font-family:var(--font-display);font-size:1.8rem;letter-spacing:3px;margin-bottom:5px;font-weight:400}
+        .cat-content p{color:var(--taupe-l);font-size:.8rem;font-weight:300;margin-bottom:18px}
+        .cat-link{display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;font-weight:600;transition:gap .3s}
+        .cat-card:hover .cat-link{gap:14px}
+
+        /* ===== LOOKBOOK ===== */
+        .lookbook{background:var(--cream);overflow:hidden}
+        .lb-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+        .lb-visual{position:relative;height:650px}
+        .lb-img-main{width:100%;height:100%;background:var(--pearl);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+        .lb-img-main .emoji{font-size:8rem;opacity:.3}
+        .lb-img-main .label{position:absolute;bottom:30px;left:30px;font-family:var(--font-accent);font-size:.8rem;color:var(--taupe);letter-spacing:4px;text-transform:uppercase}
+        .lb-float-card{position:absolute;background:var(--cream);border:1px solid rgba(0,0,0,.06);padding:20px;z-index:3;box-shadow:0 15px 40px rgba(0,0,0,.06)}
+        .lb-float-card:nth-child(2){top:10%;right:-30px;width:180px;text-align:center}
+        .lb-float-card:nth-child(3){bottom:15%;right:-40px;width:200px}
+        .lb-float-card .emoji{font-size:2rem;margin-bottom:8px}
+        .lb-float-card h5{font-family:var(--font-display);font-size:.85rem;letter-spacing:1px;margin-bottom:4px}
+        .lb-float-card p{font-size:.75rem;color:var(--taupe);font-weight:300}
+        .lb-float-card .price{font-weight:600;font-size:.85rem;margin-top:5px}
+
+        .lb-text .over{font-family:var(--font-accent);font-style:italic;color:var(--taupe);font-size:1rem;letter-spacing:3px;display:block;margin-bottom:10px}
+        .lb-text h2{font-family:var(--font-display);font-size:2.8rem;font-weight:400;letter-spacing:3px;line-height:1.2;margin-bottom:25px}
+        .lb-text h2 em{font-style:italic;color:var(--gold-d)}
+        .lb-text p{color:var(--taupe);font-size:.92rem;margin-bottom:15px;font-weight:300;line-height:1.9}
+        .lb-text blockquote{font-family:var(--font-accent);font-size:1.15rem;font-style:italic;color:var(--taupe-l);border-left:2px solid var(--gold);padding-left:20px;margin:30px 0;line-height:1.8}
+        .lb-features{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:30px 0 35px}
+        .lb-feat{display:flex;align-items:center;gap:10px}
+        .lb-feat .ic{width:28px;height:28px;background:var(--noir);color:var(--ivory);display:flex;align-items:center;justify-content:center;font-size:.65rem;flex-shrink:0;font-weight:800}
+        .lb-feat span{font-size:.85rem;font-weight:500;letter-spacing:.5px}
+
+        /* ===== FEATURED COLLECTION ===== */
+        .featured{background:var(--noir);color:var(--ivory);position:relative;overflow:hidden}
+        .feat-inner{display:grid;grid-template-columns:1fr 1fr;min-height:550px}
+        .feat-left{padding:80px;display:flex;align-items:center}
+        .feat-left-content .over{font-family:var(--font-accent);font-style:italic;color:var(--gold);font-size:1rem;letter-spacing:3px;display:block;margin-bottom:10px}
+        .feat-left-content h2{font-family:var(--font-display);font-size:2.5rem;font-weight:300;letter-spacing:3px;line-height:1.2;margin-bottom:20px}
+        .feat-left-content p{color:var(--taupe-l);font-size:.9rem;font-weight:300;margin-bottom:15px;line-height:1.9}
+        .feat-price{display:flex;align-items:baseline;gap:12px;margin:25px 0 30px}
+        .feat-price .old{font-size:1.1rem;color:var(--taupe);text-decoration:line-through;font-weight:300}
+        .feat-price .new{font-family:var(--font-display);font-size:2.2rem;color:var(--gold)}
+        .feat-timer{display:flex;gap:12px;margin-bottom:30px}
+        .timer-box{background:var(--noir3);border:1px solid rgba(255,255,255,.04);padding:12px 16px;text-align:center;min-width:60px}
+        .timer-box .num{font-family:var(--font-display);font-size:1.4rem;display:block;line-height:1}
+        .timer-box .lbl{font-size:.55rem;color:var(--taupe);letter-spacing:2px;text-transform:uppercase}
+
+        .feat-right{display:flex;align-items:center;justify-content:center;background:var(--noir3);position:relative;overflow:hidden}
+        .feat-visual{position:relative;width:350px;height:350px}
+        .feat-circle{width:100%;height:100%;border-radius:50%;border:1px solid rgba(201,169,110,.08);display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,rgba(201,169,110,.03),transparent)}
+        .feat-circle .emoji{font-size:7rem;animation:featFloat 4s ease-in-out infinite}
+        @keyframes featFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+        .feat-orbit{position:absolute;inset:-20px;border:1px dashed rgba(201,169,110,.06);border-radius:50%;animation:spinSlow 30s linear infinite}
+        .feat-badge{position:absolute;top:20px;right:20px;width:80px;height:80px;background:var(--rose);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--white);animation:badgePop 2s ease-in-out infinite;box-shadow:0 8px 25px rgba(196,114,127,.3)}
+        .feat-badge .val{font-family:var(--font-display);font-size:1.2rem;line-height:1;font-weight:700}
+        .feat-badge .lbl{font-size:.5rem;letter-spacing:2px;text-transform:uppercase}
+        @keyframes badgePop{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+
+        /* ===== INSTAGRAM ===== */
+        .insta-sec{padding:80px 0;text-align:center;background:var(--cream)}
+        .insta-sec h3{font-family:var(--font-display);font-size:1.2rem;letter-spacing:5px;margin-bottom:5px}
+        .insta-sec .handle{font-family:var(--font-accent);color:var(--gold-d);font-size:.9rem;letter-spacing:3px;margin-bottom:30px;display:block}
+        .insta-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+        .insta-cell{aspect-ratio:1;background:var(--pearl);display:flex;align-items:center;justify-content:center;font-size:2.2rem;position:relative;cursor:pointer;transition:all .3s;overflow:hidden}
+        .insta-cell::after{content:'♡';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(10,10,10,.15);opacity:0;transition:opacity .3s;font-size:1.5rem;color:var(--ivory)}
+        .insta-cell:hover::after{opacity:1}
+        .insta-cell:hover{transform:scale(.96)}
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials{background:var(--ivory2)}
+        .test-slider{max-width:720px;margin:0 auto;position:relative;overflow:hidden}
+        .test-track{display:flex;transition:transform .7s var(--ease-out)}
+        .test-slide{min-width:100%;text-align:center;padding:0 30px}
+        .test-slide .stars{color:var(--gold);letter-spacing:5px;margin-bottom:25px;font-size:.9rem}
+        .test-slide blockquote{font-family:var(--font-accent);font-size:1.3rem;font-style:italic;line-height:2;color:var(--noir);margin-bottom:30px}
+        .test-author{display:flex;flex-direction:column;align-items:center;gap:6px}
+        .test-avatar{width:55px;height:55px;border-radius:50%;background:var(--noir);color:var(--ivory);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1rem;font-weight:600}
+        .test-author h4{font-family:var(--font-display);font-size:.9rem;letter-spacing:2px}
+        .test-author p{font-family:var(--font-accent);color:var(--taupe);font-size:.78rem;letter-spacing:2px;text-transform:uppercase}
+        .test-dots{display:flex;justify-content:center;gap:10px;margin-top:35px}
+        .tdot{width:8px;height:8px;border:1px solid var(--noir);transform:rotate(45deg);cursor:pointer;transition:all .3s;background:transparent}
+        .tdot.active{background:var(--noir)}
+        .test-arrows{display:flex;justify-content:center;gap:12px;margin-top:18px}
+        .tarr{width:42px;height:42px;border:1px solid rgba(0,0,0,.15);background:transparent;color:var(--noir);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:1rem}
+        .tarr:hover{background:var(--noir);color:var(--ivory)}
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter{background:var(--noir);color:var(--ivory);text-align:center;padding:100px 0}
+        .newsletter .over{font-family:var(--font-accent);font-style:italic;color:var(--gold);font-size:1rem;letter-spacing:3px;display:block;margin-bottom:10px}
+        .newsletter h2{font-family:var(--font-display);font-size:2.5rem;font-weight:300;letter-spacing:5px;margin-bottom:15px}
+        .newsletter p{color:var(--taupe-l);font-size:.9rem;font-weight:300;max-width:480px;margin:0 auto 35px}
+        .nl-form{display:flex;max-width:500px;margin:0 auto;overflow:hidden}
+        .nl-form input{flex:1;padding:16px 20px;background:var(--noir3);border:1px solid rgba(255,255,255,.06);border-right:none;color:var(--ivory);font-size:.85rem;outline:none;font-family:var(--font-body);font-weight:300;letter-spacing:1px}
+        .nl-form input:focus{border-color:var(--gold)}
+        .nl-form button{padding:16px 30px;background:var(--gold);border:1px solid var(--gold);color:var(--noir);cursor:pointer;font-weight:700;font-size:.75rem;letter-spacing:3px;text-transform:uppercase;transition:all .3s;font-family:var(--font-body)}
+        .nl-form button:hover{background:var(--gold-l)}
+
+        /* ===== FEATURES BAR ===== */
+        .feat-bar{padding:60px 0;background:var(--cream);border-top:1px solid rgba(0,0,0,.04);border-bottom:1px solid rgba(0,0,0,.04)}
+        .feat-bar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
+        .fb-item{text-align:center;padding:15px}
+        .fb-item .emoji{font-size:1.8rem;margin-bottom:12px;display:block}
+        .fb-item h4{font-family:var(--font-display);font-size:.85rem;letter-spacing:2px;margin-bottom:6px}
+        .fb-item p{color:var(--taupe);font-size:.8rem;font-weight:300}
+
+        /* ===== FOOTER ===== */
+        .footer{background:var(--noir);color:var(--taupe-l);padding:80px 0 0;border-top:1px solid rgba(255,255,255,.03)}
+        .footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.5fr;gap:50px;padding-bottom:55px;border-bottom:1px solid rgba(255,255,255,.04)}
+        .footer-col .logo{margin-bottom:18px}.footer-col .logo-main{color:var(--ivory)}
+        .footer-col>p{font-size:.85rem;font-weight:300;margin-bottom:22px;line-height:1.9}
+        .footer-socials{display:flex;gap:8px}
+        .f-soc{width:38px;height:38px;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:all .3s;color:var(--taupe-l)}
+        .f-soc:hover{background:var(--gold);color:var(--noir);border-color:var(--gold)}
+        .footer-col h4{font-family:var(--font-display);font-size:.78rem;letter-spacing:4px;color:var(--gold);margin-bottom:22px;text-transform:uppercase}
+        .ft-links li{margin-bottom:9px}
+        .ft-links a{font-size:.82rem;font-weight:300;transition:all .3s}
+        .ft-links a:hover{color:var(--gold);padding-left:5px}
+        .ft-pay{display:flex;gap:8px;margin-top:15px;flex-wrap:wrap}
+        .pay-icon{width:45px;height:28px;background:var(--noir3);border:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--taupe-l);font-weight:600;letter-spacing:1px}
+        .footer-bar{padding:22px 0;display:flex;justify-content:space-between;align-items:center;font-size:.75rem;font-weight:300}
+        .fbl{display:flex;gap:20px}
+        .fbl a{color:var(--taupe-l);transition:color .3s}
+        .fbl a:hover{color:var(--gold)}
+
+        /* ===== SCROLL TOP ===== */
+        .go-top{position:fixed;bottom:30px;right:30px;width:46px;height:46px;background:var(--noir);color:var(--ivory);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transition:all .4s var(--ease);z-index:900;border:none;font-size:1rem;box-shadow:0 8px 25px rgba(0,0,0,.15)}
+        .go-top.show{opacity:1;visibility:visible}
+        .go-top:hover{transform:translateY(-5px);background:var(--gold);color:var(--noir)}
+
+        /* ===== ANIMATIONS ===== */
+        .rv{opacity:0;transform:translateY(50px);transition:all .9s var(--ease-out)}
+        .rv.vis{opacity:1;transform:translateY(0)}
+        .rvl{opacity:0;transform:translateX(-60px);transition:all .9s var(--ease-out)}
+        .rvl.vis{opacity:1;transform:translateX(0)}
+        .rvr{opacity:0;transform:translateX(60px);transition:all .9s var(--ease-out)}
+        .rvr.vis{opacity:1;transform:translateX(0)}
+        .rvs{opacity:0;transform:scale(.9);transition:all .9s var(--ease-out)}
+        .rvs.vis{opacity:1;transform:scale(1)}
+        .stg>*{opacity:0;transform:translateY(30px);transition:all .7s var(--ease-out)}
+        .stg.vis>*:nth-child(1){opacity:1;transform:translateY(0);transition-delay:.05s}
+        .stg.vis>*:nth-child(2){opacity:1;transform:translateY(0);transition-delay:.12s}
+        .stg.vis>*:nth-child(3){opacity:1;transform:translateY(0);transition-delay:.19s}
+        .stg.vis>*:nth-child(4){opacity:1;transform:translateY(0);transition-delay:.26s}
+        .stg.vis>*:nth-child(5){opacity:1;transform:translateY(0);transition-delay:.33s}
+        .stg.vis>*:nth-child(6){opacity:1;transform:translateY(0);transition-delay:.40s}
+
+        .p-txt{font-family:var(--font-display);font-size:10rem;color:rgba(0,0,0,.02);white-space:nowrap;position:absolute;pointer-events:none;letter-spacing:10px;font-weight:300}
+
+        /* ===== RESPONSIVE ===== */
+        @media(max-width:1024px){
+            .products-grid{grid-template-columns:repeat(2,1fr)}
+            .cat-grid{grid-template-columns:1fr}
+            .feat-inner{grid-template-columns:1fr}
+            .feat-bar-grid{grid-template-columns:repeat(2,1fr)}
+            .footer-grid{grid-template-columns:1fr 1fr}
+            .lb-grid{grid-template-columns:1fr;gap:40px}
+            .lb-visual{height:450px}
+        }
+        @media(max-width:768px){
+            .cur,.cur-d{display:none}
+            .topstrip{display:none}
+            .navbar{top:0}
+            .hamburger{display:flex}
+            .nav-menu{display:none}
+            .hero-split{grid-template-columns:1fr}
+            .hero-left{padding:120px 30px 60px;text-align:center}
+            .hero h1{font-size:2.8rem}
+            .hero-btns{justify-content:center;flex-wrap:wrap}
+            .hero-right{min-height:350px}
+            .hero-right-decor{display:none}
+            .hero-model-circle{width:260px;height:260px}
+            .hero-model-inner{width:190px;height:190px}
+            .hero-model-emoji{font-size:5rem}
+            .hero-float{display:none}
+            .sh h2{font-size:2rem;letter-spacing:3px}
+            .products-grid{grid-template-columns:1fr 1fr}
+            .lb-features{grid-template-columns:1fr}
+            .lb-float-card{display:none}
+            .feat-left{padding:50px 25px}
+            .feat-right{min-height:350px}
+            .feat-timer{flex-wrap:wrap}
+            .test-slide blockquote{font-size:1.1rem}
+            .insta-grid{grid-template-columns:repeat(3,1fr)}
+            .feat-bar-grid{grid-template-columns:1fr 1fr}
+            .footer-grid{grid-template-columns:1fr}
+            .footer-bar{flex-direction:column;gap:8px;text-align:center}
+            .p-txt{font-size:5rem}
+        }
+        @media(max-width:480px){
+            .hero h1{font-size:2.2rem}
+            .hero-sub{font-size:.9rem;letter-spacing:3px}
+            .hero-btns{flex-direction:column;align-items:center}
+            .products-grid{grid-template-columns:1fr}
+            .feat-bar-grid{grid-template-columns:1fr}
+            .insta-grid{grid-template-columns:repeat(2,1fr)}
+            .nl-form{flex-direction:column}
+            .nl-form input{border-right:1px solid rgba(255,255,255,.06);border-bottom:none}
         }
     </style>
 </head>
 <body>
 
-    <!-- Preloader -->
-    <div class="preloader" id="preloader">
-        <div class="preloader-content">
-            <div class="coffee-cup">☕</div>
-            <div class="preloader-text">Kopi Dewata</div>
-        </div>
-    </div>
+<!-- Cursor -->
+<div class="cur" id="cur"></div>
+<div class="cur-d" id="curD"></div>
 
-    <!-- Navigation -->
-    <nav id="navbar">
+<!-- Preloader -->
+<div id="preloader">
+    <div class="pre-logo">MAISON NOIR</div>
+    <div class="pre-sub">Paris · Milan · New York</div>
+    <div class="pre-line"><div class="pre-fill" id="preFill"></div></div>
+    <div class="pre-pct" id="prePct">0%</div>
+</div>
+
+<!-- Top Strip -->
+<div class="topstrip">
+    <span>🚚 Complimentary Shipping on Orders Over $250</span>
+    <span>·</span>
+    <span>✨ New Season 2024 — <a href="#new">Shop Now</a></span>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+    <div class="container">
+        <div class="nav-icons" style="gap:12px">
+            <span class="nav-icon">🔍</span>
+        </div>
         <a href="#" class="logo">
-            ☕ KOPI DEWATA
-            <span>Bali</span>
+            <span class="logo-main">MAISON NOIR</span>
+            <span class="logo-sub">Paris · Est. 1987</span>
         </a>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#about" onclick="closeMenu()">Story</a></li>
-            <li><a href="#menu" onclick="closeMenu()">Menu</a></li>
-            <li><a href="#gallery" onclick="closeMenu()">Gallery</a></li>
-            <li><a href="#testimonials" onclick="closeMenu()">Reviews</a></li>
-            <li><a href="#visit" onclick="closeMenu()">Visit</a></li>
-            <li><a href="#visit" class="reserve-btn" onclick="closeMenu()">Reserve</a></li>
-        </ul>
-        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="nav-menu" id="navMenu">
+            <a href="#new">New In</a>
+            <a href="#collections">Collections</a>
+            <a href="#lookbook">Lookbook</a>
+            <a href="#about">About</a>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-bg"></div>
-        <div class="hero-particles" id="particles"></div>
-        <div class="hero-content">
-            <div class="hero-badge">Est. 2018 · Ubud, Bali</div>
-            <h1>Where Coffee Meets <em>Paradise</em></h1>
-            <div class="hero-subtitle">Handcrafted with Balinese Soul</div>
-            <p>Nestled among lush rice terraces of Ubud, Kopi Dewata offers an unforgettable coffee experience with locally sourced beans, artisan pastries, and the most breathtaking tropical views.</p>
-            <div class="hero-buttons">
-                <a href="#menu" class="btn-primary">Explore Menu</a>
-                <a href="#about" class="btn-secondary">Our Story</a>
-            </div>
+        <div class="nav-icons">
+            <span class="nav-icon">👤</span>
+            <span class="nav-icon">♡</span>
+            <span class="nav-icon">👜<span class="badge">3</span></span>
         </div>
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <div class="scroll-line"></div>
-        </div>
-    </section>
-
-    <!-- Marquee -->
-    <div class="marquee-section">
-        <div class="marquee-track">
-            <div class="marquee-item"><span>Single Origin</span><div class="marquee-dot"></div></div>
-            <div class="marquee-item"><span>Luwak Coffee</span><div class="marquee-dot"></div></div>
-            <div class="marquee-item"><span>Rice Terrace Views</span><div class="marquee-dot"></div></div>
-            <div class="marquee-item"><span>Organic Beans</span><div class="marquee-dot"></div></div>
-            <div class="marquee-item"><span>Balinese Pastries</span><div class="marquee-dot"></div></div>
-            <div class="marquee-item"><span>Tropical Smoothies</span><div class="marquee-dot"></div></div>
-            <div class="marquee-item"><span>Sunset Sessions</span><div class="marquee-dot"></div></div>
-            <div class="marquee-item"><span>Artisan Brews</span><div class="marquee-dot"></div></div>
-            <div class="marquee-item"><span>Single Origin</span><div class="marquee-dot"></div></div>
-            <div class="marquee-item"><span>Luwak Coffee</span><div class="marquee-dot"></div></div>
-            <div class="marquee-item"><span>Rice Terrace Views</span><div class="marquee-dot"></div></div>
-            <div class="marquee-item"><span>Organic Beans</span><div class="marquee-dot"></div></div>
-            <div class="marquee-item"><span>Balinese Pastries</span><div class="marquee-dot"></div></div>
-            <div class="marquee-item"><span>Tropical Smoothies</span><div class="marquee-dot"></div></div>
-            <div class="marquee-item"><span>Sunset Sessions</span><div class="marquee-dot"></div></div>
-            <div class="marquee-item"><span>Artisan Brews</span><div class="marquee-dot"></div></div>
-        </div>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </div>
+</nav>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="about-grid">
-            <div class="about-images reveal">
-                <div class="about-img about-img-1">
-                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80" alt="Coffee Being Poured">
-                </div>
-                <div class="about-img about-img-2">
-                    <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80" alt="Bali Temple">
-                </div>
-                <div class="about-float-card">
-                    <div class="number">6+</div>
-                    <div class="label">Years of Excellence</div>
-                </div>
-            </div>
-            <div class="about-content reveal">
-                <h3>Our Story</h3>
-                <h2>A Love Letter to <em>Balinese Coffee</em> Culture</h2>
-                <p>Born from a deep passion for Indonesian coffee heritage, Kopi Dewata was founded in the heart of Ubud by a Balinese family dedicated to sharing the island's finest flavors with the world.</p>
-                <p>Every cup tells a story — from the volcanic highlands of Kintamani where our beans are harvested, to the careful roasting process guided by generations of knowledge. We believe coffee is not just a drink, it's a sacred ritual.</p>
-                <div class="about-features">
-                    <div class="about-feature">
-                        <div class="about-feature-icon">🌿</div>
-                        <span>100% Organic<br>Beans</span>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-icon">🌋</div>
-                        <span>Kintamani<br>Highlands</span>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-icon">🤲</div>
-                        <span>Hand Roasted<br>Daily</span>
-                    </div>
-                    <div class="about-feature">
-                        <div class="about-feature-icon">🏡</div>
-                        <span>Family Owned<br>& Operated</span>
-                    </div>
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+    <a href="#new" style="--i:1">New In</a>
+    <a href="#collections" style="--i:2">Collections</a>
+    <a href="#lookbook" style="--i:3">Lookbook</a>
+    <a href="#about" style="--i:4">About</a>
+    <a href="#" style="--i:5">Account</a>
+    <a href="#" style="--i:6">Wishlist</a>
+    <a href="#" style="--i:7">Cart (3)</a>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="home">
+    <div class="hero-split">
+        <div class="hero-left">
+            <div class="hero-left-content">
+                <div class="hero-season"><div class="dot"></div> Autumn/Winter 2024</div>
+                <h1>The Art of <em>Timeless</em> Elegance</h1>
+                <div class="hero-sub">Haute Couture Collection</div>
+                <p class="hero-desc">Discover our latest collection where Parisian craftsmanship meets contemporary design. Each piece is meticulously handcrafted from the finest Italian fabrics.</p>
+                <div class="hero-btns">
+                    <a href="#new" class="btn btn-dark">Shop Collection <span class="arr">→</span></a>
+                    <a href="#lookbook" class="btn btn-light">View Lookbook <span class="arr">→</span></a>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Menu Section -->
-    <section class="menu" id="menu">
-        <div class="section-header reveal">
-            <span class="section-tag">Curated Selection</span>
-            <h2 class="section-title">Our <em>Menu</em></h2>
-            <div class="section-line"></div>
-            <p class="section-desc">From traditional Balinese brews to modern creations, each item is crafted with love and the finest local ingredients.</p>
-        </div>
-
-        <div class="menu-categories reveal">
-            <button class="menu-cat-btn active">All</button>
-            <button class="menu-cat-btn">Coffee</button>
-            <button class="menu-cat-btn">Smoothies</button>
-            <button class="menu-cat-btn">Food</button>
-            <button class="menu-cat-btn">Desserts</button>
-        </div>
-
-        <div class="menu-grid">
-            <div class="menu-card reveal">
-                <div class="menu-card-img">
-                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80" alt="Kintamani Pour Over">
-                    <div class="menu-card-badge">Signature</div>
-                </div>
-                <div class="menu-card-body">
-                    <h3>Kintamani Pour Over</h3>
-                    <div class="origin">Kintamani Highlands, Bali</div>
-                    <p>Single-origin beans from volcanic soil, featuring citrus notes with a honey-like sweetness.</p>
-                    <div class="menu-card-footer">
-                        <div class="menu-price">IDR 55K <small>/ cup</small></div>
-                        <button class="menu-add-btn">+</button>
+        <div class="hero-right">
+            <div class="hero-right-bg">
+                <div class="hero-model">
+                    <div class="hero-model-circle">
+                        <div class="hero-model-inner">
+                            <div class="hero-model-emoji">👗</div>
+                        </div>
                     </div>
+                    <span class="hero-model-tag">Runway Ready</span>
                 </div>
             </div>
-
-            <div class="menu-card reveal">
-                <div class="menu-card-img">
-                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&q=80" alt="Coconut Cold Brew">
-                    <div class="menu-card-badge">Popular</div>
-                </div>
-                <div class="menu-card-body">
-                    <h3>Coconut Cold Brew</h3>
-                    <div class="origin">House Special Blend</div>
-                    <p>24-hour cold brew infused with fresh coconut cream and a touch of palm sugar.</p>
-                    <div class="menu-card-footer">
-                        <div class="menu-price">IDR 65K <small>/ glass</small></div>
-                        <button class="menu-add-btn">+</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="menu-card reveal">
-                <div class="menu-card-img">
-                    <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&q=80" alt="Nasi Campur Bali">
-                    <div class="menu-card-badge">Must Try</div>
-                </div>
-                <div class="menu-card-body">
-                    <h3>Nasi Campur Dewata</h3>
-                    <div class="origin">Traditional Balinese Cuisine</div>
-                    <p>A colorful plate of Balinese mixed rice with satay, lawar, sambal matah & crispy tempeh.</p>
-                    <div class="menu-card-footer">
-                        <div class="menu-price">IDR 85K <small>/ plate</small></div>
-                        <button class="menu-add-btn">+</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="menu-card reveal">
-                <div class="menu-card-img">
-                    <img src="https://images.unsplash.com/photo-1546039907-7b3a4607ac6f?w=600&q=80" alt="Dragon Bowl">
-                </div>
-                <div class="menu-card-body">
-                    <h3>Dragon Fruit Bowl</h3>
-                    <div class="origin">Fresh & Healthy</div>
-                    <p>Pink dragon fruit blended with banana, topped with granola, coconut flakes & tropical fruits.</p>
-                    <div class="menu-card-footer">
-                        <div class="menu-price">IDR 75K <small>/ bowl</small></div>
-                        <button class="menu-add-btn">+</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="menu-card reveal">
-                <div class="menu-card-img">
-                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&q=80" alt="Pandan Cake">
-                </div>
-                <div class="menu-card-body">
-                    <h3>Pandan Layer Cake</h3>
-                    <div class="origin">Balinese Dessert</div>
-                    <p>Traditional steamed pandan cake layered with coconut cream and palm sugar caramel.</p>
-                    <div class="menu-card-footer">
-                        <div class="menu-price">IDR 45K <small>/ slice</small></div>
-                        <button class="menu-add-btn">+</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="menu-card reveal">
-                <div class="menu-card-img">
-                    <img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?w=600&q=80" alt="Mango Smoothie">
-                    <div class="menu-card-badge">Refreshing</div>
-                </div>
-                <div class="menu-card-body">
-                    <h3>Tropical Mango Bliss</h3>
-                    <div class="origin">Seasonal Fruits</div>
-                    <p>Fresh Balinese mango blended with passion fruit, lime and a hint of chili for a tropical kick.</p>
-                    <div class="menu-card-footer">
-                        <div class="menu-price">IDR 55K <small>/ glass</small></div>
-                        <button class="menu-add-btn">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Signature Drinks Scroll -->
-    <section class="signature">
-        <div class="section-header reveal" style="padding: 0 60px;">
-            <span class="section-tag" style="color: var(--secondary);">Don't Miss</span>
-            <h2 class="section-title">Signature <em>Creations</em></h2>
-            <div class="section-line"></div>
-            <p class="section-desc">Unique drinks you won't find anywhere else — inspired by Bali's rich culture and natural bounty.</p>
-        </div>
-        <div class="signature-scroll">
-            <div class="signature-card">
-                <div class="emoji">🌺</div>
-                <h3>Frangipani Latte</h3>
-                <div class="price-tag">IDR 70K</div>
-                <p>Espresso infused with frangipani flower syrup, oat milk, and topped with edible flower petals. A Bali-exclusive experience.</p>
-            </div>
-            <div class="signature-card">
-                <div class="emoji">🥥</div>
-                <h3>Young Coconut Affogato</h3>
-                <div class="price-tag">IDR 80K</div>
-                <p>Served in a fresh young coconut shell — vanilla gelato drowning in a double shot of Kintamani espresso.</p>
-            </div>
-            <div class="signature-card">
-                <div class="emoji">🍵</div>
-                <h3>Jamu Tonic Coffee</h3>
-                <div class="price-tag">IDR 60K</div>
-                <p>Traditional Balinese jamu (turmeric, ginger, tamarind) meets cold brew coffee. Wellness in a glass.</p>
-            </div>
-            <div class="signature-card">
-                <div class="emoji">🌴</div>
-                <h3>Palm Sugar Macchiato</h3>
-                <div class="price-tag">IDR 65K</div>
-                <p>Caramelized Balinese palm sugar layered with steamed coconut milk and a bold espresso shot.</p>
-            </div>
-            <div class="signature-card">
-                <div class="emoji">🍃</div>
-                <h3>Pandan Matcha Fusion</h3>
-                <div class="price-tag">IDR 70K</div>
-                <p>Ceremonial grade matcha blended with fresh pandan extract, coconut milk, and organic honey.</p>
-            </div>
-            <div class="signature-card">
-                <div class="emoji">🔥</div>
-                <h3>Volcanic Mocha</h3>
-                <div class="price-tag">IDR 75K</div>
-                <p>Dark chocolate from Tabanan's cacao farms meets smoky espresso, topped with chili-infused cream.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery -->
-    <section class="gallery" id="gallery">
-        <div class="section-header reveal">
-            <span class="section-tag">Visual Journey</span>
-            <h2 class="section-title">Our <em>Gallery</em></h2>
-            <div class="section-line"></div>
-            <p class="section-desc">Moments captured at Kopi Dewata — where every corner is picture-perfect.</p>
-        </div>
-        <div class="gallery-grid reveal">
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&q=80" alt="Cafe Interior">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&q=80" alt="Latte Art">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Bali View">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600&q=80" alt="Coffee Beans">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="Restaurant Interior">
-            </div>
-            <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Food Plate">
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
-        <div class="section-header reveal">
-            <span class="section-tag">Guest Reviews</span>
-            <h2 class="section-title">What Travelers <em>Say</em></h2>
-            <div class="section-line"></div>
-        </div>
-        <div class="testimonial-slider reveal">
-            <div class="testimonial-slide active">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"The most magical coffee experience of my life. Sipping a Kintamani pour-over while overlooking the rice terraces — this is why you come to Bali. Absolutely unforgettable."</p>
-                <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80" alt="Sarah" class="testimonial-avatar">
-                    <div class="testimonial-info">
-                        <h4>Sarah Mitchell</h4>
-                        <span>Melbourne, Australia</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-slide">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"As a coffee professional, I was blown away by the quality and dedication here. The coconut cold brew is a masterpiece. The staff treats every cup like a work of art."</p>
-                <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80" alt="Takeshi" class="testimonial-avatar">
-                    <div class="testimonial-info">
-                        <h4>Takeshi Yamamoto</h4>
-                        <span>Tokyo, Japan</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-slide">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"We stumbled upon this gem during our honeymoon and ended up coming back every single day. The food is incredible, the coffee is world-class, and the views are spectacular."</p>
-                <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&q=80" alt="Emma" class="testimonial-avatar">
-                    <div class="testimonial-info">
-                        <h4>Emma & David Laurent</h4>
-                        <span>Paris, France</span>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-slide">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"The Jamu Tonic Coffee changed my life — I never thought wellness and coffee could go together so perfectly. This place has soul. You can taste the love in everything."</p>
-                <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=80" alt="Marcus" class="testimonial-avatar">
-                    <div class="testimonial-info">
-                        <h4>Marcus Rivera</h4>
-                        <span>New York, USA</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="testimonial-nav reveal">
-            <button class="testimonial-dot active" onclick="goToSlide(0)"></button>
-            <button class="testimonial-dot" onclick="goToSlide(1)"></button>
-            <button class="testimonial-dot" onclick="goToSlide(2)"></button>
-            <button class="testimonial-dot" onclick="goToSlide(3)"></button>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <div class="stats">
-        <div class="stats-grid reveal">
-            <div class="stat-item">
-                <div class="stat-number" data-target="15000">0</div>
-                <div class="stat-label">Happy Visitors</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" data-target="42">0</div>
-                <div class="stat-label">Menu Items</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" data-target="98">0</div>
-                <div class="stat-label">Countries Reached</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number" data-target="4.9">0</div>
-                <div class="stat-label">Google Rating</div>
+            <div class="hero-float"><span>✦ Silk Blend</span></div>
+            <div class="hero-float"><span>✦ Hand Stitched</span></div>
+            <div class="hero-right-decor">
+                <div class="hero-decor-item"><h4>Material</h4><p>Italian Silk</p></div>
+                <div class="hero-decor-item"><h4>Crafted In</h4><p>Paris, France</p></div>
+                <div class="hero-decor-item"><h4>Starting At</h4><p>$1,250</p></div>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Visit Section -->
-    <section class="visit" id="visit">
-        <div class="section-header reveal">
-            <span class="section-tag">Find Us</span>
-            <h2 class="section-title">Visit <em>Kopi Dewata</em></h2>
-            <div class="section-line"></div>
+<!-- Marquee -->
+<div class="marquee">
+    <div class="mq-track">
+        <div class="mq-item"><div class="dot"></div>New Arrivals</div>
+        <div class="mq-item"><div class="dot"></div>Ready-to-Wear</div>
+        <div class="mq-item"><div class="dot"></div>Haute Couture</div>
+        <div class="mq-item"><div class="dot"></div>Accessories</div>
+        <div class="mq-item"><div class="dot"></div>Sustainable Fashion</div>
+        <div class="mq-item"><div class="dot"></div>Made in Paris</div>
+        <div class="mq-item"><div class="dot"></div>Free Shipping $250+</div>
+        <div class="mq-item"><div class="dot"></div>New Arrivals</div>
+        <div class="mq-item"><div class="dot"></div>Ready-to-Wear</div>
+        <div class="mq-item"><div class="dot"></div>Haute Couture</div>
+        <div class="mq-item"><div class="dot"></div>Accessories</div>
+        <div class="mq-item"><div class="dot"></div>Sustainable Fashion</div>
+        <div class="mq-item"><div class="dot"></div>Made in Paris</div>
+        <div class="mq-item"><div class="dot"></div>Free Shipping $250+</div>
+    </div>
+</div>
+
+<!-- Features Bar -->
+<div class="feat-bar">
+    <div class="container">
+        <div class="feat-bar-grid rv" id="featBar">
+            <div class="fb-item"><span class="emoji">🚚</span><h4>Free Shipping</h4><p>On orders over $250</p></div>
+            <div class="fb-item"><span class="emoji">↩️</span><h4>Easy Returns</h4><p>30-day hassle-free returns</p></div>
+            <div class="fb-item"><span class="emoji">🔒</span><h4>Secure Payment</h4><p>256-bit SSL encryption</p></div>
+            <div class="fb-item"><span class="emoji">💎</span><h4>Premium Quality</h4><p>Handcrafted excellence</p></div>
         </div>
-        <div class="visit-grid">
-            <div class="visit-map reveal">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63117.81089796498!2d115.22767389814942!3d-8.506837844618684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23d739f22c9c3%3A0x54a38afd6bf2d9c4!2sUbud%2C%20Gianyar%20Regency%2C%20Bali%2C%20Indonesia!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</div>
+
+<!-- New Arrivals -->
+<section class="new-arrivals" id="new">
+    <div class="p-txt" style="top:5%;left:-5%" data-speed="0.02">NEW ARRIVALS</div>
+    <div class="container">
+        <div class="sh rv">
+            <span class="over">Just Landed</span>
+            <h2>NEW ARRIVALS</h2>
+            <div class="orn"><i></i><em></em><i></i></div>
+            <p>The latest additions to our Autumn/Winter collection, curated for the modern connoisseur</p>
+        </div>
+        <div class="products-grid stg">
+            <div class="product-card">
+                <div class="product-img">
+                    <span class="emoji">🧥</span>
+                    <div class="product-img-overlay"><button class="btn-icon">👁️</button><button class="btn-icon">👜</button></div>
+                    <span class="product-tag new">New</span>
+                    <button class="product-wishlist">♡</button>
+                </div>
+                <div class="product-colors"><div class="color-dot" style="background:#2c2c2c"></div><div class="color-dot" style="background:#8b7d6b"></div><div class="color-dot" style="background:#c4727f"></div></div>
+                <div class="product-info"><p class="category">Outerwear</p><h4>Cashmere Overcoat</h4><p class="price">$2,450</p></div>
             </div>
-            <div class="visit-info reveal">
-                <h3>We'd love to see you</h3>
-                <h2>Come Experience the Magic</h2>
-                <div class="visit-details">
-                    <div class="visit-detail">
-                        <div class="visit-detail-icon">📍</div>
-                        <div>
-                            <h4>Address</h4>
-                            <p>Jl. Raya Tegallalang No. 88,<br>Ubud, Gianyar, Bali 80571</p>
-                        </div>
-                    </div>
-                    <div class="visit-detail">
-                        <div class="visit-detail-icon">🕐</div>
-                        <div>
-                            <h4>Opening Hours</h4>
-                            <p>Every Day: 7:00 AM – 10:00 PM<br>Breakfast served until 11:00 AM</p>
-                        </div>
-                    </div>
-                    <div class="visit-detail">
-                        <div class="visit-detail-icon">📞</div>
-                        <div>
-                            <h4>Contact</h4>
-                            <p>+62 361 987 654<br>hello@kopidewata.com</p>
-                        </div>
-                    </div>
-                    <div class="visit-detail">
-                        <div class="visit-detail-icon">🛵</div>
-                        <div>
-                            <h4>Getting Here</h4>
-                            <p>Free parking available. 15 min from Ubud center.<br>We're on Grab & Gojek!</p>
-                        </div>
-                    </div>
+            <div class="product-card">
+                <div class="product-img" style="background:#e8e0d0">
+                    <span class="emoji">👗</span>
+                    <div class="product-img-overlay"><button class="btn-icon">👁️</button><button class="btn-icon">👜</button></div>
+                    <span class="product-tag sale">-30%</span>
+                    <button class="product-wishlist">♡</button>
+                </div>
+                <div class="product-colors"><div class="color-dot" style="background:#f5f0e8"></div><div class="color-dot" style="background:#0a0a0a"></div></div>
+                <div class="product-info"><p class="category">Dresses</p><h4>Silk Midi Dress</h4><p class="price"><span class="old">$1,800</span>$1,260</p></div>
+            </div>
+            <div class="product-card">
+                <div class="product-img" style="background:#d4d0c8">
+                    <span class="emoji">🧣</span>
+                    <div class="product-img-overlay"><button class="btn-icon">👁️</button><button class="btn-icon">👜</button></div>
+                    <span class="product-tag new">New</span>
+                    <button class="product-wishlist">♡</button>
+                </div>
+                <div class="product-colors"><div class="color-dot" style="background:#8b7d6b"></div><div class="color-dot" style="background:#3a3a3a"></div><div class="color-dot" style="background:#c0c0c0"></div></div>
+                <div class="product-info"><p class="category">Accessories</p><h4>Merino Wool Scarf</h4><p class="price">$380</p></div>
+            </div>
+            <div class="product-card">
+                <div class="product-img" style="background:#e0ddd5">
+                    <span class="emoji">👠</span>
+                    <div class="product-img-overlay"><button class="btn-icon">👁️</button><button class="btn-icon">👜</button></div>
+                    <button class="product-wishlist">♡</button>
+                </div>
+                <div class="product-colors"><div class="color-dot" style="background:#0a0a0a"></div><div class="color-dot" style="background:#c4727f"></div></div>
+                <div class="product-info"><p class="category">Shoes</p><h4>Leather Stiletto Pumps</h4><p class="price">$890</p></div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:50px" class="rv">
+            <a href="#" class="btn btn-light">View All Products <span class="arr">→</span></a>
+        </div>
+    </div>
+</section>
+
+<!-- Categories -->
+<section class="categories" id="collections">
+    <div class="container">
+        <div class="sh rv">
+            <span class="over" style="color:var(--gold)">Explore</span>
+            <h2 style="color:var(--ivory)">COLLECTIONS</h2>
+            <div class="orn"><i style="background:linear-gradient(90deg,transparent,var(--gold))"></i><em style="background:var(--gold)"></em><i style="background:linear-gradient(90deg,var(--gold),transparent)"></i></div>
+            <p>Curated categories for every occasion, every season, every you</p>
+        </div>
+        <div class="cat-grid stg">
+            <div class="cat-card">
+                <div class="cat-card-bg"><span class="emoji">👗</span></div>
+                <div class="cat-overlay"></div>
+                <div class="cat-content">
+                    <span class="over">Women's</span>
+                    <h3>Ready-to-Wear</h3>
+                    <p>Effortless elegance for the modern woman. Dresses, blouses, skirts & more.</p>
+                    <a href="#" class="cat-link">Explore Collection <span class="arr">→</span></a>
+                </div>
+            </div>
+            <div class="cat-card">
+                <div class="cat-card-bg"><span class="emoji">🤵</span></div>
+                <div class="cat-overlay"></div>
+                <div class="cat-content">
+                    <span class="over">Men's</span>
+                    <h3>Tailored Essentials</h3>
+                    <p>Impeccable tailoring meets modern sophistication. Suits, coats, shirts & more.</p>
+                    <a href="#" class="cat-link">Explore Collection <span class="arr">→</span></a>
+                </div>
+            </div>
+            <div class="cat-card">
+                <div class="cat-card-bg"><span class="emoji">👜</span></div>
+                <div class="cat-overlay"></div>
+                <div class="cat-content">
+                    <span class="over">Luxury</span>
+                    <h3>Accessories</h3>
+                    <p>The finishing touch. Bags, scarves, jewelry, shoes & leather goods.</p>
+                    <a href="#" class="cat-link">Explore Collection <span class="arr">→</span></a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Newsletter -->
-    <div class="newsletter">
-        <div class="reveal">
-            <h2>Stay Connected with Kopi Dewata</h2>
-            <p>Get updates on new menu items, events, and special offers — straight to your inbox.</p>
-            <form class="newsletter-form" onsubmit="handleNewsletter(event)">
-                <input type="email" placeholder="Enter your email address" required>
-                <button type="submit">Subscribe</button>
-            </form>
+<!-- Lookbook -->
+<section class="lookbook" id="lookbook">
+    <div class="container">
+        <div class="lb-grid">
+            <div class="lb-visual rvl">
+                <div class="lb-img-main">
+                    <span class="emoji">📸</span>
+                    <span class="label">AW24 Campaign</span>
+                </div>
+                <div class="lb-float-card">
+                    <span class="emoji">🧥</span>
+                    <h5>Wool Blend Coat</h5>
+                    <p>Italian virgin wool</p>
+                    <p class="price">$3,200</p>
+                </div>
+                <div class="lb-float-card">
+                    <span class="emoji">👜</span>
+                    <h5>Le Minuit Bag</h5>
+                    <p>Hand-stitched calfskin</p>
+                    <p class="price">$2,800</p>
+                </div>
+            </div>
+            <div class="lb-text rvr">
+                <span class="over">Autumn/Winter 2024</span>
+                <h2>The Poetry of <em>Shadows</em></h2>
+                <p>This season's collection is an ode to the interplay of light and darkness. Inspired by the cobblestone streets of Paris at dusk, each piece captures the romance of twilight — where structure meets fluidity, and tradition embraces the avant-garde.</p>
+                <blockquote>"Fashion is not about fabric. It is about the person who wears it — their story, their dreams, their quiet revolution."<br>— <strong>Isabelle Noir</strong>, Creative Director</blockquote>
+                <div class="lb-features">
+                    <div class="lb-feat"><div class="ic">✓</div><span>Italian Fabrics</span></div>
+                    <div class="lb-feat"><div class="ic">✓</div><span>Hand-Stitched Details</span></div>
+                    <div class="lb-feat"><div class="ic">✓</div><span>Sustainable Materials</span></div>
+                    <div class="lb-feat"><div class="ic">✓</div><span>Limited Editions</span></div>
+                    <div class="lb-feat"><div class="ic">✓</div><span>Parisian Atelier Made</span></div>
+                    <div class="lb-feat"><div class="ic">✓</div><span>Lifetime Alterations</span></div>
+                </div>
+                <a href="#" class="btn btn-dark">Explore Lookbook <span class="arr">→</span></a>
+            </div>
         </div>
     </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
+<!-- Featured Collection -->
+<section class="featured" id="about">
+    <div class="feat-inner">
+        <div class="feat-left">
+            <div class="feat-left-content rvl">
+                <span class="over">Limited Edition</span>
+                <h2>THE MIDNIGHT<br>CAPSULE COLLECTION</h2>
+                <p>An exclusive 12-piece capsule collection crafted from the rarest Japanese silk and Italian cashmere. Only 200 pieces worldwide. Each garment is individually numbered and comes with a certificate of authenticity.</p>
+                <div class="feat-price"><span class="old">$4,500</span><span class="new">$3,600</span></div>
+                <div class="feat-timer">
+                    <div class="timer-box"><span class="num" id="days">12</span><span class="lbl">Days</span></div>
+                    <div class="timer-box"><span class="num" id="hours">08</span><span class="lbl">Hours</span></div>
+                    <div class="timer-box"><span class="num" id="mins">45</span><span class="lbl">Mins</span></div>
+                    <div class="timer-box"><span class="num" id="secs">30</span><span class="lbl">Secs</span></div>
+                </div>
+                <div style="display:flex;gap:12px">
+                    <a href="#" class="btn btn-gold">Shop Now <span class="arr">→</span></a>
+                    <a href="#" class="btn btn-light" style="border-color:rgba(245,240,232,.3);color:var(--ivory)">Details <span class="arr">→</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="feat-right">
+            <div class="feat-visual rvs">
+                <div class="feat-orbit"></div>
+                <div class="feat-circle"><span class="emoji">🧥</span></div>
+                <div class="feat-badge"><span class="val">20%</span><span class="lbl">OFF</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+    <div class="container">
+        <div class="sh rv">
+            <span class="over">Client Love</span>
+            <h2>TESTIMONIALS</h2>
+            <div class="orn"><i></i><em></em><i></i></div>
+        </div>
+        <div class="test-slider rv">
+            <div class="test-track" id="testTrack">
+                <div class="test-slide">
+                    <div class="stars">★ ★ ★ ★ ★</div>
+                    <blockquote>"Maison Noir doesn't just make clothes — they create wearable art. The cashmere overcoat I purchased is the most exquisite garment I've ever owned. The attention to detail, the weight of the fabric, the perfect drape — it's nothing short of extraordinary."</blockquote>
+                    <div class="test-author"><div class="test-avatar">EM</div><h4>Elizabeth Monroe</h4><p>Vogue Editor</p></div>
+                </div>
+                <div class="test-slide">
+                    <div class="stars">★ ★ ★ ★ ★</div>
+                    <blockquote>"I've been a loyal Maison Noir client for over a decade. Their pieces transcend trends — they become heirlooms. The personal styling service is exceptional, and every visit to their Paris atelier feels like stepping into a world of pure elegance."</blockquote>
+                    <div class="test-author"><div class="test-avatar">SC</div><h4>Sofia Castellano</h4><p>Fashion Director, Harper's Bazaar</p></div>
+                </div>
+                <div class="test-slide">
+                    <div class="stars">★ ★ ★ ★ ★</div>
+                    <blockquote>"The Midnight Capsule Collection redefined my wardrobe. Each piece is versatile yet distinctive, transitioning effortlessly from boardroom to evening events. Maison Noir understands that true luxury is in the craftsmanship, not just the label."</blockquote>
+                    <div class="test-author"><div class="test-avatar">JW</div><h4>James Worthington</h4><p>CEO & Collector</p></div>
+                </div>
+            </div>
+            <div class="test-dots"><div class="tdot active" data-s="0"></div><div class="tdot" data-s="1"></div><div class="tdot" data-s="2"></div></div>
+            <div class="test-arrows"><button class="tarr" id="tPrev">←</button><button class="tarr" id="tNext">→</button></div>
+        </div>
+    </div>
+</section>
+
+<!-- Instagram -->
+<div class="insta-sec">
+    <div class="container">
+        <h3>FOLLOW US</h3>
+        <span class="handle">@maisonnoir_official</span>
+    </div>
+    <div class="insta-grid">
+        <div class="insta-cell">👗</div><div class="insta-cell">👜</div><div class="insta-cell">🧣</div>
+        <div class="insta-cell">👠</div><div class="insta-cell">🧥</div><div class="insta-cell">💍</div>
+    </div>
+</div>
+
+<!-- Newsletter -->
+<div class="newsletter">
+    <div class="container">
+        <span class="over">Stay Connected</span>
+        <h2>JOIN THE INNER CIRCLE</h2>
+        <p>Be the first to discover new collections, exclusive offers, private sale access, and invitations to our runway events.</p>
+        <div class="nl-form"><input type="email" placeholder="Your email address" id="nlInput"><button id="nlBtn">Subscribe <span class="arr">→</span></button></div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
         <div class="footer-grid">
-            <div class="footer-brand">
-                <a href="#" class="logo">☕ KOPI DEWATA <span>Bali</span></a>
-                <p>A sanctuary for coffee lovers in the heart of Bali. Where every sip tells a story and every visit becomes a cherished memory.</p>
-                <div class="footer-socials">
-                    <a href="#" class="footer-social">𝕏</a>
-                    <a href="#" class="footer-social">IG</a>
-                    <a href="#" class="footer-social">FB</a>
-                    <a href="#" class="footer-social">YT</a>
+            <div class="footer-col">
+                <a href="#" class="logo"><span class="logo-main">MAISON NOIR</span><span class="logo-sub">Paris · Est. 1987</span></a>
+                <p>A Parisian luxury fashion house dedicated to timeless elegance, sustainable craftsmanship, and the art of dressing beautifully. Each piece tells a story of passion and precision.</p>
+                <div class="footer-socials"><a href="#" class="f-soc">𝑓</a><a href="#" class="f-soc">▣</a><a href="#" class="f-soc">𝕏</a><a href="#" class="f-soc">▶</a><a href="#" class="f-soc">𝐏</a></div>
+            </div>
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul class="ft-links"><li><a href="#">New Arrivals</a></li><li><a href="#">Women</a></li><li><a href="#">Men</a></li><li><a href="#">Accessories</a></li><li><a href="#">Shoes</a></li><li><a href="#">Sale</a></li><li><a href="#">Gift Cards</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul class="ft-links"><li><a href="#">Our Story</a></li><li><a href="#">Sustainability</a></li><li><a href="#">Ateliers</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="#">Contact</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Customer Care</h4>
+                <ul class="ft-links"><li><a href="#">Shipping & Returns</a></li><li><a href="#">Size Guide</a></li><li><a href="#">Care Instructions</a></li><li><a href="#">FAQs</a></li><li><a href="#">Book Appointment</a></li></ul>
+                <h4 style="margin-top:25px">We Accept</h4>
+                <div class="ft-pay">
+                    <div class="pay-icon">VISA</div><div class="pay-icon">MC</div><div class="pay-icon">AMEX</div><div class="pay-icon">PP</div><div class="pay-icon">AP</div>
                 </div>
             </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <a href="#about">Our Story</a>
-                <a href="#menu">Full Menu</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#testimonials">Reviews</a>
-                <a href="#visit">Location</a>
-            </div>
-            <div class="footer-col">
-                <h4>Experiences</h4>
-                <a href="#">Coffee Tasting</a>
-                <a href="#">Brewing Workshop</a>
-                <a href="#">Farm Tour</a>
-                <a href="#">Private Events</a>
-                <a href="#">Gift Cards</a>
-            </div>
-            <div class="footer-col">
-                <h4>Information</h4>
-                <a href="#">Careers</a>
-                <a href="#">Press Kit</a>
-                <a href="#">Partnerships</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-            </div>
         </div>
-        <div class="footer-bottom">
-            <span>© 2024 Kopi Dewata Bali. All rights reserved.</span>
-            <span>Crafted with ☕ & ❤️ in Ubud, Bali</span>
+        <div class="footer-bar">
+            <span>© 2024 Maison Noir. All Rights Reserved.</span>
+            <div class="fbl"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a><a href="#">Cookies</a></div>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <script>
-        // Preloader
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('preloader').classList.add('hidden');
-            }, 1500);
-        });
+<!-- Scroll Top -->
+<button class="go-top" id="goTop">↑</button>
 
-        // Particles
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.width = particle.style.height = Math.random() * 4 + 2 + 'px';
-            particle.style.animationDuration = Math.random() * 15 + 10 + 's';
-            particle.style.animationDelay = Math.random() * 10 + 's';
-            particlesContainer.appendChild(particle);
-        }
+<script>
+// CURSOR
+const cur=document.getElementById('cur'),curD=document.getElementById('curD');
+let mx=0,my=0,cx=0,cy=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;curD.style.left=mx+'px';curD.style.top=my+'px'});
+function ac(){cx+=(mx-cx)*.12;cy+=(my-cy)*.12;cur.style.left=cx+'px';cur.style.top=cy+'px';requestAnimationFrame(ac)}ac();
+document.querySelectorAll('a,button,.product-card,.cat-card,.nav-icon,.insta-cell,.btn-icon,.color-dot,.product-wishlist').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cur.classList.add('hov'));
+    el.addEventListener('mouseleave',()=>cur.classList.remove('hov'))
+});
+// Invert cursor on dark sections
+const darkSecs=document.querySelectorAll('.hero,.categories,.featured,.newsletter,.marquee,.footer');
+function checkCurInv(){
+    let inv=false;
+    darkSecs.forEach(s=>{const r=s.getBoundingClientRect();if(my>=r.top&&my<=r.bottom)inv=true});
+    cur.classList.toggle('inv',inv);curD.classList.toggle('inv',inv)
+}
+document.addEventListener('mousemove',checkCurInv);
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 80) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
+// PRELOADER
+const pf=document.getElementById('preFill'),pp=document.getElementById('prePct');
+let pc=0;const pi=setInterval(()=>{pc+=Math.floor(Math.random()*4)+1;if(pc>100)pc=100;pf.style.width=pc+'%';pp.textContent=pc+'%';if(pc>=100)clearInterval(pi)},30);
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('preloader').classList.add('done'),2200)});
 
-        // Mobile menu
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('open');
-        }
+// NAVBAR
+const nb=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nb.classList.toggle('scrolled',window.scrollY>80));
 
-        function closeMenu() {
-            document.getElementById('navLinks').classList.remove('open');
-        }
+// MOBILE MENU
+const hb=document.getElementById('hamburger'),mn=document.getElementById('mobileNav');
+hb.addEventListener('click',()=>{hb.classList.toggle('active');mn.classList.toggle('active');document.body.style.overflow=mn.classList.contains('active')?'hidden':''});
+document.querySelectorAll('.mobile-nav a').forEach(a=>a.addEventListener('click',()=>{hb.classList.remove('active');mn.classList.remove('active');document.body.style.overflow=''}));
 
-        // Scroll reveal
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealOnScroll = () => {
-            revealElements.forEach(el => {
-                const top = el.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                if (top < windowHeight - 100) {
-                    el.classList.add('active');
-                }
-            });
-        };
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', revealOnScroll);
+// SCROLL REVEAL
+const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('vis')})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.rv,.rvl,.rvr,.rvs,.stg').forEach(el=>obs.observe(el));
 
-        // Testimonial slider
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.testimonial-slide');
-        const dots = document.querySelectorAll('.testimonial-dot');
+// TESTIMONIALS
+let ts=0;const tt=3,tTr=document.getElementById('testTrack'),tDs=document.querySelectorAll('.tdot');
+function goT(i){ts=i;tTr.style.transform=`translateX(-${i*100}%)`;tDs.forEach((d,x)=>d.classList.toggle('active',x===i))}
+document.getElementById('tNext').addEventListener('click',()=>goT((ts+1)%tt));
+document.getElementById('tPrev').addEventListener('click',()=>goT((ts-1+tt)%tt));
+tDs.forEach(d=>d.addEventListener('click',()=>goT(+d.dataset.s)));
+setInterval(()=>goT((ts+1)%tt),5500);
 
-        function goToSlide(index) {
-            slides[currentSlide].classList.remove('active');
-            dots[currentSlide].classList.remove('active');
-            currentSlide = index;
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
-        }
+// PARALLAX TEXT
+window.addEventListener('scroll',()=>{document.querySelectorAll('.p-txt').forEach(el=>{el.style.transform=`translateX(${window.scrollY*parseFloat(el.dataset.speed)}px)`})});
 
-        setInterval(() => {
-            goToSlide((currentSlide + 1) % slides.length);
-        }, 5000);
+// COUNTDOWN TIMER
+function updateTimer(){
+    const end=new Date();end.setDate(end.getDate()+12);end.setHours(end.getHours()+8);
+    const diff=end-new Date();
+    document.getElementById('days').textContent=String(Math.floor(diff/864e5)).padStart(2,'0');
+    document.getElementById('hours').textContent=String(Math.floor(diff%864e5/36e5)).padStart(2,'0');
+    document.getElementById('mins').textContent=String(Math.floor(diff%36e5/6e4)).padStart(2,'0');
+    document.getElementById('secs').textContent=String(Math.floor(diff%6e4/1e3)).padStart(2,'0');
+}
+updateTimer();setInterval(updateTimer,1000);
 
-        // Counter animation
-        const counters = document.querySelectorAll('.stat-number');
-        let counterStarted = false;
+// WISHLIST TOGGLE
+document.querySelectorAll('.product-wishlist').forEach(btn=>{
+    btn.addEventListener('click',function(e){e.stopPropagation();this.textContent=this.textContent==='♡'?'❤️':'♡'})
+});
 
-        function startCounters() {
-            counters.forEach(counter => {
-                const target = parseFloat(counter.getAttribute('data-target'));
-                const isDecimal = target % 1 !== 0;
-                const duration = 2000;
-                const increment = target / (duration / 16);
-                let current = 0;
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)window.scrollTo({top:t.offsetTop-70,behavior:'smooth'})})});
 
-                const updateCounter = () => {
-                    current += increment;
-                    if (current < target) {
-                        counter.textContent = isDecimal ? current.toFixed(1) : Math.floor(current).toLocaleString();
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counter.textContent = isDecimal ? target.toFixed(1) : target.toLocaleString();
-                        if (!isDecimal && target >= 1000) {
-                            counter.textContent = target.toLocaleString() + '+';
-                        }
-                    }
-                };
-                updateCounter();
-            });
-        }
+// SCROLL TOP
+const gt=document.getElementById('goTop');
+window.addEventListener('scroll',()=>gt.classList.toggle('show',window.scrollY>500));
+gt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
-        const statsSection = document.querySelector('.stats');
-        const statsObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting && !counterStarted) {
-                counterStarted = true;
-                startCounters();
-            }
-        }, { threshold: 0.5 });
-        statsObserver.observe(statsSection);
+// NEWSLETTER
+document.getElementById('nlBtn').addEventListener('click',function(){const i=document.getElementById('nlInput');if(i.value&&i.value.includes('@')){this.textContent='✓ Subscribed!';this.style.background='#27ae60';this.style.borderColor='#27ae60';setTimeout(()=>{this.textContent='Subscribe →';this.style.background='';this.style.borderColor='';i.value=''},2500)}});
 
-        // Menu category buttons
-        const catBtns = document.querySelectorAll('.menu-cat-btn');
-        catBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                catBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-            });
-        });
-
-        // Newsletter
-        function handleNewsletter(e) {
-            e.preventDefault();
-            const input = e.target.querySelector('input');
-            const btn = e.target.querySelector('button');
-            btn.textContent = '✓ Subscribed!';
-            btn.style.background = '#7A8B6F';
-            input.value = '';
-            setTimeout(() => {
-                btn.textContent = 'Subscribe';
-                btn.style.background = '';
-            }, 3000);
-        }
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-    </script>
+// NAV ACTIVE
+const secs=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{let c='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-100)c=s.id});document.querySelectorAll('.nav-menu a').forEach(a=>{a.style.color=a.getAttribute('href')===`#${c}`?'var(--noir)':''})});
+</script>
 </body>
 </html>
